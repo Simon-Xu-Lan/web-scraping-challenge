@@ -17,9 +17,9 @@ def scrape_Nasa_Mars_news(url):
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     gallery = soup.find(class_='grid_gallery')
+    time.sleep(5)
     news_title = gallery.find(class_='content_title').text
     news_p = gallery.find(class_='article_teaser_body').text
-    # browser.quit()
     return news_title, news_p
 
 
@@ -29,21 +29,17 @@ def scrape_JPL_Mars_Space_images(url):
     browser.find_by_tag('input').first.fill('Featured Mars')
     # Handle Sortby
     browser.find_by_id('searchHelpers_sortBy').first.select('latestDate')
-    # results = browser.find_by_id('SearchListingPageResults')
-    # results.links.find_by_partial_href('images').click()
-    # time.sleep(3)
     results = browser.find_by_css('.SearchResultCard').first
     results.click()
+    time.sleep(3)
     browser.find_by_text('Download JPG ').click()
     featured_image_url = browser.url
-    # browser.quit()
     return featured_image_url
 
 
 def scrape_Mars_fact(url):
     mars_facts_dfs = pd.read_html(url) # pd.read_html return dfs: a list of dictionary
     a_json = mars_facts_dfs[0].to_json(orient="records")
-    # browser.quit()
 
     return a_json
 
@@ -67,7 +63,6 @@ def scrape_Mars_hemispheres(url):
         mars_hemispheres.append(a_dict)
     
         browser.back()
-    # browser.quit()
     return mars_hemispheres
 
 

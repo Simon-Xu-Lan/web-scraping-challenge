@@ -1,1 +1,0 @@
-ATLAS_PASSWORD = "codeforfun2020"

@@ -1,3 +1,4 @@
 .idea
 .ipynb_checkpoints
-__oycache__
+__oycache__/
+config.py

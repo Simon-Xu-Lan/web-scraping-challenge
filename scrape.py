@@ -9,7 +9,7 @@ import json
 
 # Setup splinter
 executable_path = {'executable_path': ChromeDriverManager().install()}
-browser = Browser('chrome', **executable_path, headless=False)
+browser = Browser('chrome', **executable_path, headless=True)
 
 
 def scrape_Nasa_Mars_news(url):
@@ -17,7 +17,7 @@ def scrape_Nasa_Mars_news(url):
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     gallery = soup.find(class_='grid_gallery')
-    time.sleep(5)
+    time.sleep(20)
     news_title = gallery.find(class_='content_title').text
     news_p = gallery.find(class_='article_teaser_body').text
     return news_title, news_p
